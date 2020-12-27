@@ -124,7 +124,7 @@ find . -maxdepth 1 -size +1000000c #深度查找最大文件：-maxdepth
 sleep 5s
 find . -mindepth 1 -size +1000000c #深度查找最小文件：-mindepth
 #(2使用ls+awk组合管道
-find . -maxdepth 1 -size +1000000c $$ ls -l .|awk '{if($5>1000000) print R$9}'  #$9表示截取字符位置
+find . -maxdepth 1 -size +1000000c && ls -l .|awk '{if($5>1000000) print R$9}'  #$9表示截取字符位置
 #(3使用find+ll+awk组合（管道）
 #find ./ -name "*" -maxdepth 0 -exec ls -l {} \;|awk '{if($5>1000000) print $9}'
 #warning:you hava specified the global option -maxdepth after teh argument -name, but global options are not positional,i.e.;
