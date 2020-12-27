@@ -119,15 +119,22 @@ echo -e $red"*******************************************************************
 sleep 5s
 
 #查找当前目录下大于1M的文件的三种方法
-#(1使用find的参数实现
-find . -maxdepth 1 -size +1000000c
+#(1使用find的参数实现 
+find . -maxdepth 1 -size +1000000c #深度查找最大文件：-maxdepth
+sleep 5s
+find . -mindepth 1 -size +1000000c #深度查找最小文件：-mindepth
 #(2使用ls+awk组合管道
-find . -maxdepth 1 -size +1000000c;
+find . -maxdepth 1 -size +1000000c $$ ls -l .|awk '{if($5>1000000) print R$9}'  #$9表示截取字符位置
 #(3使用find+ll+awk组合（管道）
-find ./ -name "*" -maxdepth 0 -exec ls -l {} \;|awk '{if($5>1000000) print $8}'
+#find ./ -name "*" -maxdepth 0 -exec ls -l {} \;|awk '{if($5>1000000) print $9}'
+#warning:you hava specified the global option -maxdepth after teh argument -name, but global options are not positional,i.e.;
+#-maxepth affects tests specified before it as well as those specified after it.
+#Please pecify global options before other arguments.
+
+find ./ -name "*"  -exec ls -l {} \;|awk '{if($5>1000000) print $9}'
 sleep 5s
 
-##################################################################################################
+echo -e $green"###############################################################################"
 echo -e $yellow"============================================================================="
 echo -e $white"NOTE : "
 echo -e $white"Find the file!"
