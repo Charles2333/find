@@ -16,7 +16,7 @@ echo -e $white"NOTE : "
 echo -e $white"Find the file!"
 echo""
 echo -e $red""
-echo -e $while "选项	用法"
+echo -e $white "选项	用法"
 echo "-empty	查找空白文件或目录"
 echo "-group	按组查找"
 echo "-name	按文档名称查找"
@@ -32,7 +32,7 @@ echo "-maxdepth  指定遍历搜索的最大深度 "
 echo "-mindepth  指定开始遍历搜索的最小深度"
 echo "                                                                             "
 echo -e $red"============================================================================="
-echo -e $white	"	        Show me how to find a file        "
+echo -e $white "	        Show me how to find a file        "
 echo -e $red"============================================================================="
 echo "                                                                "
 echo -e $white""
@@ -51,43 +51,43 @@ sleep 1s
 
 echo -e $red"************************查找/root目录下所有名称以.log结尾的文件***************************"
 sleep 3s
-find  /var/log/  -name  "*.log"
+find /var/log/ -name "*.log"
 echo -e $red"***************************************************************************************"
 sleep 1s
 
 echo -e $red"************************不区分大小写查找文件 test****************************************"
 sleep 3s
-find  /root/ -iname  "test"
+find /root/ -iname "test"
 echo -e $red"***************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找系统中所有的空白文件*****************************************"
 sleep 3s
-find   /root  -empty
+find /root -empty
 echo -e $red"***************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找系统中所属组为root的文件**************************************"
 sleep 3s
-find  /root  -group  root
+find /root -group root
 echo -e $red"***************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找系统中所有3天内被修改过的文件*********************************"
 sleep 3s
-find  /root -mtime  -3
+find /root -mtime -3
 echo -e $red"***************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找系统中所有4天前被修改过的文件*********************************"
 sleep 3s
-find  /root  -mtime  +4
+find /root -mtime +4
 echo -e $red"***************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找系统中2天前的当天被修改过的文件*******************************"
 sleep 3s
-find  /root  -mtime   2
+find /root -mtime 2
 echo -e $red"***************************************************************************************"
 sleep 1s
 
@@ -99,54 +99,54 @@ sleep 1s
 
 echo -e $red"************************查找当前目录下大于10MB的文件*************************************"
 sleep 3s
-find  ./  -size   +10M
+find ./ -size +10M
 echo -e $red"***************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找当前目录下的所有普通文件**************************************"
 sleep 3s
-find  ./  -type   f
+find ./ -type f
 echo -e $red"****************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找当前目录下文件大小大于1M的文件*********************************"
 sleep 3s
-find ./ -type f -size +1M  #./当前路径 -type 文件类型 -size 文件大小 +大于 -小于 无 等于
+find ./ -type f -size +1M #./当前路径 -type 文件类型 -size 文件大小 +大于 -小于 无 等于
 echo -e $red"****************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找计算中root所拥有的所有文件*************************************"
 sleep 3s
-find  /root  -user  root
+find /root -user root
 echo -e $red"****************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找当前目录下大于1MB的文件后列出文件的详细信息*********************"
 sleep 3s
-find  ./  -size  +1M  -exec ls -l {} \;
+find ./ -size +1M -exec ls -l {} \;
 echo -e $red"****************************************************************************************"
 sleep 1s
 
 echo -e $red"************************查找计算机中所有大于1MB的文件**************************************"
 sleep 3s
-find   /root  -size   +1M  -a  -type  f
+find /root -size +1M -a -type f
 echo -e $red"****************************************************************************************"
 sleep 5s
 
 #查找当前目录下大于1M的文件的三种方法
-#(1使用find的参数实现 
+#(1使用find的参数实现
 find . -maxdepth 1 -size +1000000c #深度查找最大文件：-maxdepth
 sleep 5s
 find . -mindepth 1 -size +1000000c #深度查找最小文件：-mindepth
 #(2使用ls+awk组合管道
-find . -maxdepth 1 -size +1000000c && ls -l .|awk '{if($5>1000000) print R$9}'  #$9表示截取字符位置
+find . -maxdepth 1 -size +1000000c && ls -l . | awk '{if($5>1000000) print R$9}' #$9表示截取字符位置
 #(3使用find+ll+awk组合（管道）
 #find ./ -name "*" -maxdepth 0 -exec ls -l {} \;|awk '{if($5>1000000) print $9}'
 #warning:you hava specified the global option -maxdepth after teh argument -name, but global options are not positional,i.e.;
 #-maxepth affects tests specified before it as well as those specified after it.
 #Please pecify global options before other arguments.
 
-find ./ -name "*"  -exec ls -l {} \;|awk '{if($5>1000000) print $9}'
+find ./ -name "*" -exec ls -l {} \; | awk '{if($5>1000000) print $9}'
 sleep 5s
 
 echo -e $green"###############################################################################"
@@ -176,7 +176,7 @@ echo "　　　　.：所有的单个字符。               "
 echo "      　*：有字符,长度可以为0   "
 echo "                                                                             "
 echo -e $yellow"============================================================================="
-echo -e $white	"		Show me how to find a String!  "
+echo -e $white "		Show me how to find a String!  "
 echo -e $yellow"============================================================================="
 echo "                                                                "
 echo -e $white""
